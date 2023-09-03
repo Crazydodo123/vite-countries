@@ -1,19 +1,19 @@
-const Search = ({country, setCountry}) => {
+import { useEffect } from 'react'
+import { useField } from '../hooks'
+
+const Search = ({ setName }) => {
+
+  const nameInput = useField('text')
   
+  useEffect(() => {
+    setName(nameInput.value)
+  }, [nameInput.value])
   
-  const handleInputChange = (event) => {
-    setCountry(event.target.value)
-  }
-  
+
   return (
     <form>
       <label htmlFor='country'>find countries </label>
-      <input
-        type='text'
-        id='country'
-        value={country}
-        onChange={handleInputChange}
-      ></input>
+      <input {...nameInput} />
     </form>
   )
 }
