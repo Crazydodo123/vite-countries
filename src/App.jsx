@@ -8,12 +8,8 @@ import Info from './components/Info'
 import { useCountry } from './hooks'
 
 const App = () => {
-  const [name, setName] = useState('')
+  const [search, setSearch] = useState('')
   const [countriesNames, setCountriesNames] = useState([])
-
-  const country = useCountry(name, countriesNames)
-
-
   
   useEffect(() => {
     InfoServices
@@ -25,24 +21,21 @@ const App = () => {
       })
   }, [])
   
+  const country = useCountry(search, countriesNames)
+
   return (
     <>
-      <Search setName={setName} />
+      <Search setSearch={setSearch} />
 
-      {/* <Countries
-        countrySearched={country}
-        countries={countries}
-        setCountries={setCountries} 
-        countriesNames={countriesNames}
+      <Countries
+        search={search}
+        setCountry={country.changeCountry}
+        possibilities={country.possibilities}
       />
-      
+
       <Info
-        countries={countries}
-        countryData={countryData}
-        setCountryData={setCountryData}
-        weatherData={weatherData}
-        setWeatherData={setWeatherData}
-      /> */}
+        country={country}
+      />
     </>
   )
 }

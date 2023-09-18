@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
 import { useField } from '../hooks'
 
-const Search = ({ setName }) => {
+const Search = ({ setSearch }) => {
 
   const nameInput = useField('text')
   
   useEffect(() => {
-    setName(nameInput.value)
+    setSearch(nameInput.value)
   }, [nameInput.value])
-  
 
   return (
     <form>
